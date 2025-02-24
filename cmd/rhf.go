@@ -7,12 +7,12 @@ import (
 	"github.com/spf13/cobra"
 )
 
-// genCmd represents the gen command
 var genCmd = &cobra.Command{
 	Use:   "rhf",
-	Short: "A command to generate a helper function.",
+	Short: "A command to generate a helper function with test.",
 	Long: `
-Can use the gen command to generate starter / boilerplate code.
+Can use the gen command to generate starter / boilerplate code for a helper function.
+The helper function and test will be created in the folder you run the command in.
 
 Example:
 
@@ -43,29 +43,18 @@ describe("%s", () => {
 `, functionName, fileName, functionName)
 
 		if err := os.WriteFile("index.js", []byte(fileContents), 0644); err != nil {
-			fmt.Println(err)
+			fmt.Println("❌ Error creating function file")
 		}
 
 		if err := os.WriteFile(testFileName, []byte(testFileContents), 0644); err != nil {
-			fmt.Println(err)
+			fmt.Println("❌ Error creating test file:", err)
 		}
 
 		fmt.Println("✅ File name:", fileName)
 		fmt.Println("✅ Test file name:", testFileName)
-
 	},
 }
 
 func init() {
 	rootCmd.AddCommand(genCmd)
-
-	// Here you will define your flags and configuration settings.
-
-	// Cobra supports Persistent Flags which will work for this command
-	// and all subcommands, e.g.:
-	// genCmd.PersistentFlags().String("foo", "", "A help for foo")
-
-	// Cobra supports local flags which will only run when this command
-	// is called directly, e.g.:
-	// genCmd.Flags().BoolP("toggle", "t", false, "Help message for toggle")
 }

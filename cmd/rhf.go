@@ -27,23 +27,21 @@ and a test file that passes the boilerplate.
 		fileName := functionName + ".js"
 		testFileName := functionName + ".test.js"
 
-		fileContents := fmt.Sprintf(`
-const %s = (string) => {
-	console.log(string)
+		fileContents := fmt.Sprintf(`const %s = (string) => {
+	return string;
 }
 
-export default %s
+export default %s;
 `, functionName, functionName)
 
-		testFileContents := fmt.Sprintf(`
-import %s from "./"
+		testFileContents := fmt.Sprintf(`import %s from "."
 
 describe("%s", () => {
   test("tests function", () => {
-    expect($s("hello")).toBe("hello");
+    expect(%s("hello")).toBe("hello");
   });
 });
-`, functionName, fileName)
+`, functionName, fileName, fileName)
 
 		fmt.Println("fileName:", fileName)
 		fmt.Println("testFileName:", testFileName)

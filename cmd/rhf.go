@@ -22,7 +22,6 @@ Creates an index.js with boilerplate code for a countVowels function,
 and a test file that passes the boilerplate.
 `,
 	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Println("gen called", args)
 		functionName := args[0]
 		fileName := functionName + ".js"
 		testFileName := functionName + ".test.js"

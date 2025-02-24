@@ -33,7 +33,7 @@ and a test file that passes the boilerplate.
 export default %s;
 `, functionName, functionName)
 
-		testFileContents := fmt.Sprintf(`import %s from "."
+		testFileContents := fmt.Sprintf(`import %s from ".";
 
 describe("%s", () => {
   test("tests function", () => {
@@ -42,9 +42,6 @@ describe("%s", () => {
 });
 `, functionName, fileName, functionName)
 
-		fmt.Println("fileName:", fileName)
-		fmt.Println("testFileName:", testFileName)
-
 		if err := os.WriteFile("index.js", []byte(fileContents), 0644); err != nil {
 			fmt.Println(err)
 		}
@@ -52,6 +49,10 @@ describe("%s", () => {
 		if err := os.WriteFile(testFileName, []byte(testFileContents), 0644); err != nil {
 			fmt.Println(err)
 		}
+
+		fmt.Println("✅ File name:", fileName)
+		fmt.Println("✅ Test file name:", testFileName)
+
 	},
 }
 

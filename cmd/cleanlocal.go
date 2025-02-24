@@ -8,13 +8,13 @@ import (
 )
 
 var cleanlocalCmd = &cobra.Command{
-	Use:   "cleanlocal",
-	Short: "Deletes local git branches",
+	Use:   "gcl",
+	Short: "git: Deletes local git branches matching ticket pattern",
 	Long: `Will remove all the local branches starting with ES-###..
 
 Example:
 
-es cleanlocal
+es gcl
 
 will remove all the local branches starting with ES-###.
 `,

@@ -1,6 +1,3 @@
-/*
-Copyright © 2025 NAME HERE <EMAIL ADDRESS>
-*/
 package cmd
 
 import (
@@ -24,7 +21,7 @@ var userJiraIdMap = map[string]string{
 
 var jiraBlCmd = &cobra.Command{
 	Use:   "jbl",
-	Short: "backlog for specific user",
+	Short: "jira: Backlog for specific user",
 	Long: `
 This command will open the backlog for a specific user.
 
@@ -42,7 +39,7 @@ Options:
 
 Example:
 
-es jiraBl --user thomas
+es jbl --user thomas
 `,
 	Run: func(cmd *cobra.Command, args []string) {
 		user := cmd.Flag("user").Value.String()

@@ -9,13 +9,13 @@ import (
 )
 
 var jiraCmd = &cobra.Command{
-	Use:   "jira",
-	Short: "Will open the jira ticket for the current branch",
+	Use:   "jtp",
+	Short: "jira: Will open the jira ticket for the current branch",
 	Long: `Will use the current branch name, extract the ticket number and open the ticket in the browser.
 
 Example:
 
-es jira
+es jtp
 
 Will open the ticket for the branch name ES-1234`,
 	Run: func(cmd *cobra.Command, args []string) {

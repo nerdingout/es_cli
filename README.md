@@ -1,7 +1,3 @@
-Certainly! Below is a basic README template for your CLI tool, "Estatespace":
-
----
-
 # Estatespace Command Line Interface (CLI)
 
 Welcome to the **Estatespace** command line interface. This tool provides a set of commands to streamline various tasks related to Git and Jira.

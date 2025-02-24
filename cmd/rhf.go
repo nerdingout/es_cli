@@ -40,7 +40,7 @@ describe("%s", () => {
     expect(%s("hello")).toBe("hello");
   });
 });
-`, functionName, fileName, fileName)
+`, functionName, fileName, functionName)
 
 		fmt.Println("fileName:", fileName)
 		fmt.Println("testFileName:", testFileName)

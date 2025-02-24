@@ -25,7 +25,7 @@ will stage all files and commit with a message like: [ES-1234]: this is a messag
 	Run: func(cmd *cobra.Command, args []string) {
 
 		if len(args) == 0 {
-			fmt.Printf("Error: No message provided\n\nExample:\n\n$ es_cli gac \"this is a message\"\n")
+			fmt.Printf("❌ Error: No message provided\n\nExample:\n\n$ es_cli gac \"this is a message\"\n")
 			return
 		}
 
@@ -33,7 +33,7 @@ will stage all files and commit with a message like: [ES-1234]: this is a messag
 		branchName, err := getBranchNameCmd.Output()
 
 		if err != nil {
-			fmt.Println("Error getting branch name")
+			fmt.Println("❌ Error getting branch name")
 		}
 
 		branchNameString := strings.TrimSpace(string(branchName))
@@ -42,7 +42,7 @@ will stage all files and commit with a message like: [ES-1234]: this is a messag
 		matches := re.FindAllStringSubmatch(branchNameString, -1)
 
 		if len(matches) == 0 {
-			fmt.Println("Branch name does not match ES-<> pattern")
+			fmt.Println("❌ Branch name does not match ES-<> pattern")
 			return
 		}
 
@@ -50,14 +50,14 @@ will stage all files and commit with a message like: [ES-1234]: this is a messag
 		addAllCmd := exec.Command("git", "add", ".")
 
 		if err := addAllCmd.Run(); err != nil {
-			fmt.Println("Error adding all files")
+			fmt.Println("❌ Error adding all files")
 			return
 		}
 
 		commitCmd := exec.Command("git", "commit", "-m", gitMessage)
 
 		if err := commitCmd.Run(); err != nil {
-			fmt.Println("Error committing files")
+			fmt.Println("❌ Error committing files")
 			return
 		}
 

@@ -25,14 +25,14 @@ will remove all the local branches starting with ES-###.
 		branches, err := getBranchesCmd.Output()
 
 		if err != nil {
-			fmt.Println("Error getting local branches", err.Error())
+			fmt.Println("❌ Error getting local branches", err.Error())
 			return
 		}
 
 		numberOfBranches := strings.Count(string(branches), "\n")
 
 		if numberOfBranches == 0 {
-			fmt.Println("No matching local branches to delete")
+			fmt.Println("❌ No matching local branches to delete")
 			return
 		}
 
@@ -47,7 +47,7 @@ will remove all the local branches starting with ES-###.
 			fmt.Println("Deleting branch", branch)
 			deleteBranchCmd := exec.Command("git", "branch", "-D", branchString)
 			if err := deleteBranchCmd.Run(); err != nil {
-				fmt.Println("Error deleting branch", err.Error())
+				fmt.Println("❌ Error deleting branch", err.Error())
 				return
 			}
 		}

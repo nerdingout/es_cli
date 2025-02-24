@@ -33,7 +33,7 @@ Will open the ticket for the branch name ES-1234`,
 		matches := re.FindAllStringSubmatch(string(branchName), -1)
 
 		if len(matches) == 0 {
-			fmt.Println("Branch name does not match ES-<>")
+			fmt.Println("❌ Branch name does not match ES-<>")
 			return
 		}
 
@@ -41,7 +41,7 @@ Will open the ticket for the branch name ES-1234`,
 		openJiraTicketCmd := exec.Command("open", "https://estatespace.atlassian.net/browse/"+jiraTicketNumber)
 
 		if err := openJiraTicketCmd.Run(); err != nil {
-			fmt.Println("Error opening Jira ticket")
+			fmt.Println("❌ Error opening Jira ticket")
 			return
 		}
 

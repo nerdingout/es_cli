@@ -45,14 +45,14 @@ es jbl --user thomas
 		user := cmd.Flag("user").Value.String()
 
 		if userJiraIdMap[user] == "" {
-			fmt.Println("User not found")
+			fmt.Println("❌ User not found")
 			return
 		}
 
 		openJiraCmd := exec.Command("open", "https://estatespace.atlassian.net/jira/software/projects/ES/boards/26/backlog?assignee="+userJiraIdMap[user])
 
 		if err := openJiraCmd.Run(); err != nil {
-			fmt.Println("Error opening Jira ticket")
+			fmt.Println("❌ Error opening Jira ticket")
 			return
 		}
 

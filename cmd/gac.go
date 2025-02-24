@@ -61,7 +61,7 @@ will stage all files and commit with a message like: [ES-1234]: this is a messag
 			return
 		}
 
-		fmt.Printf("Committed with message:\n\n%s\n", gitMessage)
+		fmt.Printf("✅ Committed with message:\n\n%s\n", gitMessage)
 		return
 	},
 }

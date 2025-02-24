@@ -45,7 +45,7 @@ Will open the ticket for the branch name ES-1234`,
 			return
 		}
 
-		fmt.Println("Opened Jira ticket in browser")
+		fmt.Println("✅ Opened Jira ticket in browser")
 	},
 }
 

@@ -56,7 +56,7 @@ es jbl --user thomas
 			return
 		}
 
-		fmt.Println("Opened Jira ticket in browser")
+		fmt.Println("✅ Opened Jira ticket in browser")
 	},
 }
 

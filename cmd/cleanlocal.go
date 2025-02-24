@@ -52,7 +52,7 @@ will remove all the local branches starting with ES-###.
 			}
 		}
 
-		fmt.Println("Complete: Deleted", numberOfBranches, "local branches")
+		fmt.Println("✅ Complete: Deleted", numberOfBranches, "local branches")
 		return
 	},
 }

@@ -11,7 +11,8 @@ import (
 var jiraCmd = &cobra.Command{
 	Use:   "jtp",
 	Short: "jira: Will open the jira ticket for the current branch",
-	Long: `Will use the current branch name, extract the ticket number and open the ticket in the browser.
+	Long: `
+Will use the current branch name, extract the ticket number and open the ticket in the browser.
 
 Example:
 

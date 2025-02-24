@@ -10,7 +10,8 @@ import (
 var cleanlocalCmd = &cobra.Command{
 	Use:   "gcl",
 	Short: "git: Deletes local git branches matching ticket pattern",
-	Long: `Will remove all the local branches starting with ES-###..
+	Long: `
+Will remove all the local branches starting with ES-###..
 
 Example:
 

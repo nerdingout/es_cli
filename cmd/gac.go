@@ -12,7 +12,8 @@ import (
 var gacCmd = &cobra.Command{
 	Use:   "gac",
 	Short: "git: Adds and commits your files with a message",
-	Long: `Will stage all files and commit wth a message starting with the Jira ticket number. 
+	Long: `
+Will stage all files and commit wth a message starting with the Jira ticket number. 
 
 Example:
 

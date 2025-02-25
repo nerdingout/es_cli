@@ -26,12 +26,18 @@ and a test file that passes the boilerplate.
 		fileName := functionName + ".js"
 		testFileName := functionName + ".test.js"
 
-		fileContents := fmt.Sprintf(`const %s = (string) => {
-	return string;
-}
+		fileContents := fmt.Sprintf(`/**
+ * @function %s
+ * @param {string} arg
+ * @returns {string}
+ */
+
+const %s = (arg) => {
+  return arg;
+};
 
 export default %s;
-`, functionName, functionName)
+`, functionName, functionName, functionName)
 
 		testFileContents := fmt.Sprintf(`import %s from ".";
 

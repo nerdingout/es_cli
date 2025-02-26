@@ -1,16 +1,34 @@
-/*
-Copyright © 2025 NAME HERE <EMAIL ADDRESS>
-*/
 package cmd
 
 import (
 	"fmt"
 	"os"
+	"os/exec"
+	"strings"
 
 	"github.com/spf13/cobra"
 )
 
-// rfcCmd represents the rfc command
+func CountStoriesDepth(s string) int {
+	parts := strings.Split(s, "/")
+	for i, part := range parts {
+		if part == "src" {
+			return len(parts) - i
+		}
+	}
+	return 0
+}
+
+func AddDots(depth int) string {
+	var result string
+
+	for i := 1; i < depth; i++ {
+		result += "../"
+	}
+
+	return fmt.Sprintf("%sstories/tests/setupTests", result)
+}
+
 var rfcCmd = &cobra.Command{
 	Use:   "rfc",
 	Short: "Creates a React component, test file, storybook, and presentation hook",
@@ -23,7 +41,8 @@ es rfc NewComponent
 	Run: func(cmd *cobra.Command, args []string) {
 		componentName := args[0]
 		presentationHookFileName := fmt.Sprintf("use%sData.js", componentName)
-		storyFilename := fmt.Sprintf("%s.stories.js", componentName)
+		storyFilename := fmt.Sprintf("%s.stories.jsx", componentName)
+		testFileName := fmt.Sprintf("%s.test.js", componentName)
 
 		componentContents := fmt.Sprintf(`import React from "react";
 import PropTypes from "prop-types";
@@ -87,16 +106,45 @@ const Template = (args) => <%s {...args} />;
 export const Default = Template.bind({});
 `, componentName, componentName, componentName, componentName)
 
+		getPathCmd := exec.Command("pwd")
+		pathCmdOutput, err := getPathCmd.Output()
+
+		if err != nil {
+			fmt.Println("❌ Cannot get path:", err)
+			return
+		}
+
+		storiesDepth := CountStoriesDepth(string(pathCmdOutput))
+
+		testFileContents := fmt.Sprintf(`/* eslint-disable react/jsx-filename-extension */
+
+import React from "react";
+import { render } from "%s";
+
+import %s from ".";
+
+describe("<%s />", () => {
+  it("snapshot of %s", () => {
+    const tree = render(<%s text="test text" />);
+    expect(tree).toMatchSnapshot();
+  });
+});
+`, AddDots(storiesDepth), componentName, componentName, componentName, componentName)
+
 		if err := os.WriteFile("index.jsx", []byte(componentContents), 0644); err != nil {
 			fmt.Println("❌ Error creating component file:", err)
 		}
 
 		if err := os.WriteFile(presentationHookFileName, []byte(presentationHookContents), 0644); err != nil {
-			fmt.Println("❌ Error creating component file:", err)
+			fmt.Println("❌ Error creating presentation hook file:", err)
 		}
 
 		if err := os.WriteFile(storyFilename, []byte(storyContents), 0644); err != nil {
-			fmt.Println("❌ Error creating component file:", err)
+			fmt.Println("❌ Error creating component story file:", err)
+		}
+
+		if err := os.WriteFile(testFileName, []byte(testFileContents), 0644); err != nil {
+			fmt.Println("❌ Error creating component test file:", err)
 		}
 
 		fmt.Println("✅ Component with story and presentation hook created")
@@ -105,14 +153,4 @@ export const Default = Template.bind({});
 
 func init() {
 	rootCmd.AddCommand(rfcCmd)
-
-	// Here you will define your flags and configuration settings.
-
-	// Cobra supports Persistent Flags which will work for this command
-	// and all subcommands, e.g.:
-	// rfcCmd.PersistentFlags().String("foo", "", "A help for foo")
-
-	// Cobra supports local flags which will only run when this command
-	// is called directly, e.g.:
-	// rfcCmd.Flags().BoolP("toggle", "t", false, "Help message for toggle")
 }

@@ -12,8 +12,8 @@ import (
 
 var rfcCmd = &cobra.Command{
 	Use:   "rfc",
-	Short: "react: Creates a React component, test file, storybook, and presentation hook",
-	Long:  descriptions.RFCDesc,
+	Short: descriptions.RfcShort,
+	Long:  descriptions.RfcLong,
 	Run: func(cmd *cobra.Command, args []string) {
 
 		if len(args) == 0 {

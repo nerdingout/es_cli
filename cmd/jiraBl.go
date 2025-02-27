@@ -22,8 +22,8 @@ var userJiraIdMap = map[string]string{
 
 var jiraBlCmd = &cobra.Command{
 	Use:   "jbl",
-	Short: "jira: Backlog for specific user",
-	Long:  descriptions.JiraBlDesc,
+	Short: descriptions.JiraBlShort,
+	Long:  descriptions.JiraBlLong,
 	Run: func(cmd *cobra.Command, args []string) {
 		user := cmd.Flag("user").Value.String()
 

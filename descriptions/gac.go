@@ -1,5 +1,7 @@
 package descriptions
 
+const GacShort = "git: Adds and commits your files with a message"
+
 const GacLong = `Will stage all files and commit wth a message starting with the Jira ticket number. 
 
 Example:

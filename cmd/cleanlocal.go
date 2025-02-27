@@ -10,8 +10,8 @@ import (
 
 var cleanlocalCmd = &cobra.Command{
 	Use:   "gcl",
-	Short: "git: Deletes local git branches matching ticket pattern",
-	Long:  descriptions.CleanLocalDesc,
+	Short: descriptions.CleanLocalShort,
+	Long:  descriptions.CleanLocalLong,
 	Run: func(cmd *cobra.Command, args []string) {
 		getBranchesCmd := exec.Command("git", "branch", "--list", "ES-*")
 

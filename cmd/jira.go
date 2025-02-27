@@ -11,8 +11,8 @@ import (
 
 var jiraCmd = &cobra.Command{
 	Use:   "jtp",
-	Short: "jira: Will open the jira ticket for the current branch",
-	Long:  descriptions.JTPDesc,
+	Short: descriptions.JtpShort,
+	Long:  descriptions.JtpLong,
 	Run: func(cmd *cobra.Command, args []string) {
 		getBranchNameCmd := exec.Command("git", "symbolic-ref", "--short", "-q", "HEAD")
 		branchName, err := getBranchNameCmd.Output()

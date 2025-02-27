@@ -11,8 +11,8 @@ import (
 
 var genCmd = &cobra.Command{
 	Use:   "rhf",
-	Short: "react: A command to generate a helper function with test.",
-	Long:  descriptions.RHFDesc,
+	Short: descriptions.RhfShort,
+	Long:  descriptions.RhfLong,
 	Run: func(cmd *cobra.Command, args []string) {
 
 		if len(args) == 0 {

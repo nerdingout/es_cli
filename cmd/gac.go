@@ -12,7 +12,7 @@ import (
 
 var gacCmd = &cobra.Command{
 	Use:   "gac",
-	Short: "git: Adds and commits your files with a message",
+	Short: descriptions.GacShort,
 	Long:  descriptions.GacLong,
 
 	Run: func(cmd *cobra.Command, args []string) {

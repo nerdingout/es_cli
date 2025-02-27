@@ -10,7 +10,7 @@ var rootCmd = &cobra.Command{
 	Short: "Estatespace cli",
 	Long: `A CLI tool for Estatespace
 
-use es --help for more information, or visit https://github.com/nerdingout/es_cli
+Use es --help for more information, or visit https://github.com/nerdingout/es_cli
 `,
 }
 

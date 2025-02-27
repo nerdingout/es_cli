@@ -31,7 +31,7 @@ func AddDots(depth int) string {
 
 var rfcCmd = &cobra.Command{
 	Use:   "rfc",
-	Short: "Creates a React component, test file, storybook, and presentation hook",
+	Short: "react: Creates a React component, test file, storybook, and presentation hook",
 	Long: `Creates a React component, Jest test file, storybook, and presentation hook
 
 example:

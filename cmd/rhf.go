@@ -9,7 +9,7 @@ import (
 
 var genCmd = &cobra.Command{
 	Use:   "rhf",
-	Short: "A command to generate a helper function with test.",
+	Short: "react: A command to generate a helper function with test.",
 	Long: `
 Can use the gen command to generate starter / boilerplate code for a helper function.
 The helper function and test will be created in the folder you run the command in.

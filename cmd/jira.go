@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"fmt"
+	"os"
 	"os/exec"
 	"regexp"
 
@@ -22,6 +23,15 @@ Will open the ticket for the branch name ES-1234`,
 	Run: func(cmd *cobra.Command, args []string) {
 		getBranchNameCmd := exec.Command("git", "symbolic-ref", "--short", "-q", "HEAD")
 		branchName, err := getBranchNameCmd.Output()
+
+		currentDir, err := os.Getwd()
+
+		if err != nil {
+			fmt.Println("❌ Error getting current directory")
+			return
+		}
+
+		fmt.Println("current dir is ==>", currentDir)
 
 		if err != nil {
 			fmt.Println("Error getting branch name")

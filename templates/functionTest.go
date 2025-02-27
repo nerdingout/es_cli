@@ -1,6 +1,6 @@
 package templates
 
-const Test = `import %s from ".";
+const FunctionTest = `import %s from ".";
 
 describe("%s", () => {
   test("tests function", () => {

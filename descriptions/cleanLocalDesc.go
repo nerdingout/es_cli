@@ -1,4 +1,4 @@
-package templates
+package descriptions
 
 const CleanLocalDesc = `
 Will remove all the local branches starting with ES-###..

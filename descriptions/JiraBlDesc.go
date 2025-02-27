@@ -1,4 +1,4 @@
-package templates
+package descriptions
 
 const JiraBlDesc = `
 This command will open the backlog for a specific user.

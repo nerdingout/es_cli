@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"fmt"
+	"github.com/nerdingout/es_cli/descriptions"
 	"github.com/nerdingout/es_cli/templates"
 	"os"
 
@@ -11,7 +12,7 @@ import (
 var genCmd = &cobra.Command{
 	Use:   "rhf",
 	Short: "react: A command to generate a helper function with test.",
-	Long:  templates.RHFDesc,
+	Long:  descriptions.RHFDesc,
 	Run: func(cmd *cobra.Command, args []string) {
 
 		if len(args) == 0 {
@@ -24,7 +25,7 @@ var genCmd = &cobra.Command{
 		testFileName := functionName + ".test.js"
 
 		fileContents := fmt.Sprintf(templates.Function, functionName, functionName, functionName)
-		testFileContents := fmt.Sprintf(templates.Test, functionName, fileName, functionName)
+		testFileContents := fmt.Sprintf(templates.FunctionTest, functionName, fileName, functionName)
 
 		if err := os.WriteFile("index.js", []byte(fileContents), 0644); err != nil {
 			fmt.Println("❌ Error creating function file")

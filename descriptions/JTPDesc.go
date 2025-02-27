@@ -1,4 +1,4 @@
-package templates
+package descriptions
 
 const JTPDesc = `
 Will use the current branch name, extract the ticket number and open the ticket in the browser.

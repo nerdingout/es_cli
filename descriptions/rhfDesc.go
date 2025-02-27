@@ -1,4 +1,4 @@
-package templates
+package descriptions
 
 const RHFDesc = `
 Can use the gen command to generate starter / boilerplate code for a helper function.

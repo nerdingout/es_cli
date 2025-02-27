@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"fmt"
+	"github.com/nerdingout/es_cli/descriptions"
 	"github.com/nerdingout/es_cli/templates"
 	"github.com/nerdingout/es_cli/utils"
 	"github.com/spf13/cobra"
@@ -12,7 +13,7 @@ import (
 var rfcCmd = &cobra.Command{
 	Use:   "rfc",
 	Short: "react: Creates a React component, test file, storybook, and presentation hook",
-	Long:  templates.RFCDesc,
+	Long:  descriptions.RFCDesc,
 	Run: func(cmd *cobra.Command, args []string) {
 
 		if len(args) == 0 {

@@ -2,7 +2,7 @@ package cmd
 
 import (
 	"fmt"
-	"github.com/nerdingout/es_cli/templates"
+	"github.com/nerdingout/es_cli/descriptions"
 	"github.com/spf13/cobra"
 	"os/exec"
 )
@@ -23,7 +23,7 @@ var userJiraIdMap = map[string]string{
 var jiraBlCmd = &cobra.Command{
 	Use:   "jbl",
 	Short: "jira: Backlog for specific user",
-	Long:  templates.JiraBlDesc,
+	Long:  descriptions.JiraBlDesc,
 	Run: func(cmd *cobra.Command, args []string) {
 		user := cmd.Flag("user").Value.String()
 

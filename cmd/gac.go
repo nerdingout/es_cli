@@ -2,7 +2,7 @@ package cmd
 
 import (
 	"fmt"
-	"github.com/nerdingout/es_cli/templates"
+	"github.com/nerdingout/es_cli/descriptions"
 	"os/exec"
 	"regexp"
 	"strings"
@@ -13,7 +13,7 @@ import (
 var gacCmd = &cobra.Command{
 	Use:   "gac",
 	Short: "git: Adds and commits your files with a message",
-	Long:  templates.GACDesc,
+	Long:  descriptions.GacLong,
 
 	Run: func(cmd *cobra.Command, args []string) {
 

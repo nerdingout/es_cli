@@ -8,8 +8,8 @@ import (
 
 var gclCmd = &cobra.Command{
 	Use:   "gcl",
-	Short: descriptions.CleanLocalShort,
-	Long:  descriptions.CleanLocalLong,
+	Short: descriptions.GclShort,
+	Long:  descriptions.GclLong,
 	Run:   handlers.GCLHandler,
 }
 

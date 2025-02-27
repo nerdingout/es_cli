@@ -1,8 +1,8 @@
 package descriptions
 
-const JiraBlShort = "jira: Backlog for specific user"
+const JblShort = "jira: Backlog for specific user"
 
-const JiraBlLong = `
+const JblLong = `
 This command will open the backlog for a specific user.
 
 Options:

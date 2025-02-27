@@ -8,8 +8,8 @@ import (
 
 var jiraBlCmd = &cobra.Command{
 	Use:   "jbl",
-	Short: descriptions.JiraBlShort,
-	Long:  descriptions.JiraBlLong,
+	Short: descriptions.JblShort,
+	Long:  descriptions.JblLong,
 	Run:   handlers.JBLHandler,
 }
 

@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"fmt"
+	"github.com/nerdingout/es_cli/templates"
 	"github.com/spf13/cobra"
 	"os/exec"
 	"strings"
@@ -10,15 +11,7 @@ import (
 var cleanlocalCmd = &cobra.Command{
 	Use:   "gcl",
 	Short: "git: Deletes local git branches matching ticket pattern",
-	Long: `
-Will remove all the local branches starting with ES-###..
-
-Example:
-
-es gcl
-
-will remove all the local branches starting with ES-###.
-`,
+	Long:  templates.CleanLocalDesc,
 	Run: func(cmd *cobra.Command, args []string) {
 		getBranchesCmd := exec.Command("git", "branch", "--list", "ES-*")
 

@@ -2,109 +2,32 @@ package cmd
 
 import (
 	"fmt"
+	"github.com/nerdingout/es_cli/templates"
+	"github.com/nerdingout/es_cli/utils"
+	"github.com/spf13/cobra"
 	"os"
 	"os/exec"
-	"strings"
-
-	"github.com/spf13/cobra"
 )
-
-func CountStoriesDepth(s string) int {
-	parts := strings.Split(s, "/")
-	for i, part := range parts {
-		if part == "src" {
-			return len(parts) - i
-		}
-	}
-	return 0
-}
-
-func AddDots(depth int) string {
-	var result string
-
-	for i := 1; i < depth; i++ {
-		result += "../"
-	}
-
-	return fmt.Sprintf("%sstories/tests/setupTests", result)
-}
 
 var rfcCmd = &cobra.Command{
 	Use:   "rfc",
 	Short: "react: Creates a React component, test file, storybook, and presentation hook",
-	Long: `Creates a React component, Jest test file, storybook, and presentation hook
-
-example:
-
-es rfc NewComponent
-`,
+	Long:  templates.RFCDesc,
 	Run: func(cmd *cobra.Command, args []string) {
+
+		if len(args) == 0 {
+			fmt.Println("❌ Error: No component name provided, run with --help for more information")
+			return
+		}
+
 		componentName := args[0]
 		presentationHookFileName := fmt.Sprintf("use%sData.js", componentName)
 		storyFilename := fmt.Sprintf("%s.stories.jsx", componentName)
 		testFileName := fmt.Sprintf("%s.test.js", componentName)
 
-		componentContents := fmt.Sprintf(`import React from "react";
-import PropTypes from "prop-types";
-import use%sData from "./use%sData";
-
-/**
- *
- * @param props
- * @returns {Element}
- * @constructor
- */
-const %s = ({ text }) => {
-  const { incrementCount, count } = use%sData();
-
-  return (
-    <div>
-      <p>{text}</p>
-      <p>{count}</p>
-      <button type="button" onClick={incrementCount}>
-        Increment
-      </button>
-    </div>
-  );
-};
-
-%s.propTypes = {
-  text: PropTypes.string.isRequired,
-};
-
-export default %s;
-`, componentName, componentName, componentName, componentName, componentName, componentName)
-
-		presentationHookContents := fmt.Sprintf(`import { useCallback, useState } from "react";
-
-const use%sData = () => {
-  const [count, setCount] = useState(0);
-
-  const incrementCount = useCallback(() => {
-    setCount(count + 1);
-  }, [count, setCount]);
-
-  return { incrementCount, count };
-};
-
-export default use%sData;
-`, componentName, componentName)
-
-		storyContents := fmt.Sprintf(`import React from "react";
-import %s from ".";
-
-export default {
-  title: "Tests/%s",
-  component: %s,
-  args: {
-    text: "Test Component",
-  },
-};
-
-const Template = (args) => <%s {...args} />;
-
-export const Default = Template.bind({});
-`, componentName, componentName, componentName, componentName)
+		componentContents := fmt.Sprintf(templates.Component, componentName, componentName, componentName, componentName, componentName, componentName)
+		presentationHookContents := fmt.Sprintf(templates.Hook, componentName, componentName)
+		storyContents := fmt.Sprintf(templates.Story, componentName, componentName, componentName, componentName)
 
 		getPathCmd := exec.Command("pwd")
 		pathCmdOutput, err := getPathCmd.Output()
@@ -114,22 +37,8 @@ export const Default = Template.bind({});
 			return
 		}
 
-		storiesDepth := CountStoriesDepth(string(pathCmdOutput))
-
-		testFileContents := fmt.Sprintf(`/* eslint-disable react/jsx-filename-extension */
-
-import React from "react";
-import { render } from "%s";
-
-import %s from ".";
-
-describe("<%s />", () => {
-  it("snapshot of %s", () => {
-    const tree = render(<%s text="test text" />);
-    expect(tree).toMatchSnapshot();
-  });
-});
-`, AddDots(storiesDepth), componentName, componentName, componentName, componentName)
+		storiesDepth := utils.CountStoriesDepth(string(pathCmdOutput))
+		testFileContents := fmt.Sprintf(templates.ComponentTest, utils.AddDots(storiesDepth), componentName, componentName, componentName, componentName)
 
 		if err := os.WriteFile("index.jsx", []byte(componentContents), 0644); err != nil {
 			fmt.Println("❌ Error creating component file:", err)

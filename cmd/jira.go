@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"fmt"
+	"github.com/nerdingout/es_cli/templates"
 	"os"
 	"os/exec"
 	"regexp"
@@ -12,14 +13,7 @@ import (
 var jiraCmd = &cobra.Command{
 	Use:   "jtp",
 	Short: "jira: Will open the jira ticket for the current branch",
-	Long: `
-Will use the current branch name, extract the ticket number and open the ticket in the browser.
-
-Example:
-
-es jtp
-
-Will open the ticket for the branch name ES-1234`,
+	Long:  templates.JTPDesc,
 	Run: func(cmd *cobra.Command, args []string) {
 		getBranchNameCmd := exec.Command("git", "symbolic-ref", "--short", "-q", "HEAD")
 		branchName, err := getBranchNameCmd.Output()

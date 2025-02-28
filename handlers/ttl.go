@@ -55,7 +55,6 @@ func (m model) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 		case "r":
 			m.selected = make(map[int]struct{})
 		}
-
 	}
 
 	return m, nil
@@ -65,10 +64,8 @@ func (m model) View() string {
 	// The header
 	s := "List of ES team members\n\n"
 
-	// Iterate over our choices
 	for i, choice := range m.choices {
 
-		// Is the cursor pointing at this choice?
 		cursor := " " // no cursor
 		if m.cursor == i {
 			cursor = "→" // cursor!
